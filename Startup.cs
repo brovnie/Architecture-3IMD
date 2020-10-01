@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Architecture_3IMD.Controllers;
 
 namespace Architecture_3IMD
 {
@@ -48,17 +49,17 @@ namespace Architecture_3IMD
 
             app.UseEndpoints(endpoints =>
             {
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "getStores",
+                    pattern: "getStores",
+                    defaults: new {controller = "Home", action = "getAllStores"});
             });
 
-             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=getAllStores}/{id?}");
-            });
         } 
     }
 }
