@@ -59,6 +59,6 @@ namespace Architecture_3IMD
                     name: "default",
                     pattern: "{controller=Home}/{action=getAllStores}/{id?}");
             });
-        }
+        } 
     }
 }
