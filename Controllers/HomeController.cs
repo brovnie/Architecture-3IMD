@@ -11,6 +11,7 @@ using Architecture_3IMD.Models;
 
 namespace Architecture_3IMD.Controllers
 {
+    //[Route("/api/[controller]")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -25,10 +26,28 @@ namespace Architecture_3IMD.Controllers
             return View();
         }
 
-        //[HttpGet]
+        [HttpGet]
         public IActionResult getAllStores()
         {
             return Content("These are all the stores");
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult getStore([FromBody] int id)
+        {
+            return Content("This is store" + id);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> postTest([FromBody] Stores model)
+        {
+            if(model == null){
+                return StatusCode(400);
+            }
+            
+            return StatusCode(200);
+            
+            
         }
 
         public IActionResult Privacy()

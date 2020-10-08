@@ -58,6 +58,16 @@ namespace Architecture_3IMD
                     name: "getStores",
                     pattern: "getStores",
                     defaults: new {controller = "Home", action = "getAllStores"});
+
+                endpoints.MapControllerRoute(
+                    name: "getStore",
+                    pattern: "getStore",
+                    defaults: new {controller = "Home", action = "getStore"});
+
+                endpoints.MapControllerRoute(
+                    name: "postTest",
+                    pattern: "postTest",
+                    defaults: new {controller = "Home", action = "postTest"});
             });
 
         } 
