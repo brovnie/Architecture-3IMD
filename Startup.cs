@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Architecture_3IMD.Controllers;
+using Architecture_3IMD.Data;
+using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore;
 
 namespace Architecture_3IMD
 {
@@ -24,6 +27,10 @@ namespace Architecture_3IMD
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddMvc();
+            
             services.AddControllersWithViews();
         }
 
