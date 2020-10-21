@@ -1,3 +1,6 @@
+namespace Architecture_3IMD.Models.Domain
+{
+
 public class Stores
 {
      public int Id{ get; set; }
@@ -6,3 +9,4 @@ public class Stores
      public string Region{get; set;}
 }
 
+}

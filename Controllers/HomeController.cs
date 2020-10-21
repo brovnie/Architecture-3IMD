@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Architecture_3IMD.Models;
+using Architecture_3IMD.Models.Domain;
 
 
 
@@ -23,7 +23,7 @@ namespace Architecture_3IMD.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return Content("Home");
         }
 
         [HttpGet]
@@ -55,11 +55,11 @@ namespace Architecture_3IMD.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        /*[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        }*/
     }
 }
 

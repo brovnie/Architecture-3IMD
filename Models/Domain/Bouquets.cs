@@ -1,3 +1,5 @@
+namespace Architecture_3IMD.Models.Domain
+{
 
 public class Bouquet
 {
@@ -7,3 +9,4 @@ public class Bouquet
      public string Description{get; set;}
 }
 
+}

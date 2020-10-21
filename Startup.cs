@@ -13,6 +13,11 @@ using Architecture_3IMD.Data;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore;
 
+using Pomelo.EntityFrameworkCore.MySql;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.Logging;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+
 namespace Architecture_3IMD
 {
     public class Startup
@@ -27,11 +32,21 @@ namespace Architecture_3IMD
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddMvc();
-            
-            services.AddControllersWithViews();
+
+            services.AddControllers();
+            // this helper method says "whenever you need a database context, create one using the options specified in my builder".
+            // https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql
+            services.AddDbContextPool<ApplicationDbContext>(    
+                dbContextOptions => dbContextOptions
+                    .UseMySql(
+                        // Replace with your connection string. Should be in your env but for example purposes this is _good enough_ for now
+                        "server=localhost;user=root;password=;database=architecture",
+                        // Replace with your server version and type.
+                        mySqlOptions => mySqlOptions
+                            .ServerVersion(new Version(10, 4, 11), ServerType.MySql)
+                            .CharSetBehavior(CharSetBehavior.NeverAppend)
+            ));
+                    
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
